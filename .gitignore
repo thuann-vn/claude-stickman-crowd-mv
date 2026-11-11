@@ -1,0 +1,6 @@
+__pycache__/
+out/
+*.mp4
+*.m4a
+*.mp3
+.DS_Store

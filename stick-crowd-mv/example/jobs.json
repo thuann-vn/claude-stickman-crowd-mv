@@ -1,0 +1,74 @@
+[
+ {
+  "name": "s1",
+  "aspect": "9:16",
+  "refs": [
+   "out/still_1.png",
+   "bookstreet/out/paint/s1.jpg"
+  ],
+  "prompt": "Repaint the FIRST reference image (a plain 3D blockout render of a Saigon book street) as a hand-painted 2D animation background in exactly the art style of the SECOND reference image: gouache and crayon texture, visible brush hatching, thin dark ink outlines, rich saturated colours. Keep the composition, camera angle, perspective and the position, size and shape of every object of the FIRST image exactly as they are; do not move, add or remove buildings, trees, signs, lanterns or furniture. Keep all sign text exactly as written in the first image. No people, no figures. Vertical 9:16. A tree-lined pedestrian book street on a warm late afternoon: book stalls and shelves along both sides, tall trees with white-painted trunk bases arching over the paving, colourful paper lanterns and string lights hanging across, blue and red hanging banners. Golden sun streaming from the far end, long dappled purple shadows of the leaves on the brick paving."
+ },
+ {
+  "name": "s2",
+  "aspect": "9:16",
+  "refs": [
+   "out/still_2.png",
+   "bookstreet/out/paint/s1.jpg"
+  ],
+  "prompt": "Repaint the FIRST reference image (a plain 3D blockout render of a Saigon book street) as a hand-painted 2D animation background in exactly the art style of the SECOND reference image: gouache and crayon texture, visible brush hatching, thin dark ink outlines, rich saturated colours. Keep the composition, camera angle, perspective and the position, size and shape of every object of the FIRST image exactly as they are; do not move, add or remove buildings, trees, signs, lanterns or furniture. Keep all sign text exactly as written in the first image. No people, no figures. Vertical 9:16. The same book street at sunset: orange-pink sky glowing through the leaves, the paper lanterns and string lights are lit and glow in red, green, yellow, cyan and pink, warm light from the book stalls, long soft shadows on the brick paving, a small ginger cat sitting on the paving, a chalkboard sign."
+ },
+ {
+  "name": "s3",
+  "aspect": "9:16",
+  "refs": [
+   "out/still_3.png",
+   "~/.claude/skills/painted-3d-short/refs/style.jpg"
+  ],
+  "prompt": "Repaint the FIRST reference image (a plain 3D blockout render) as a hand-painted 2D animation background. Use ONLY THE ART STYLE of the SECOND reference image: gouache and crayon texture, visible brush hatching, thin dark ink outlines, rich saturated colours; do not copy any object from the second image. Keep the composition, camera angle, perspective and the position, size and shape of every object of the FIRST image exactly as they are; do not add, move or remove anything. No people, no figures, no text, no readable letters (sign boards glow with soft abstract brush marks only). Vertical 9:16. NIGHT in a narrow Japanese shopping street (shotengai) in Tokyo: deep blue-violet night sky, the street lit only by its own lights. Tightly packed narrow buildings with lit shop fronts glowing warm, fabric awnings, roller shutters, vending machines glowing white, potted plants; many glowing vertical neon sign boards sticking out over the street in pink, cyan, yellow, orange, green and violet; warm lit windows and dark windows upstairs, air conditioners, rooftop billboards and water tanks; strings of round red and cream paper lanterns hanging across the street, glowing; concrete utility poles with crossbars, transformers and a tangle of black wires; the dark asphalt is slightly wet and reflects the neon colours in soft streaks; white painted lines and zebra crossing stripes on the road. Soft glow around every lamp and sign, gentle haze in the distance. We look into the street through its big red gate with a glowing yellow board on top; the street runs straight away into the distance to a tall building with a large glowing pink screen."
+ },
+ {
+  "name": "s4",
+  "aspect": "9:16",
+  "refs": [
+   "out/still_4.png",
+   "~/.claude/skills/painted-3d-short/refs/style.jpg"
+  ],
+  "prompt": "Repaint the FIRST reference image (a plain 3D blockout render) as a hand-painted 2D animation background. Use ONLY THE ART STYLE of the SECOND reference image: gouache and crayon texture, visible brush hatching, thin dark ink outlines, rich saturated colours; do not copy any object from the second image. Keep the composition, camera angle, perspective and the position, size and shape of every object of the FIRST image exactly as they are; do not add, move or remove anything. No people, no figures, no text, no readable letters (sign boards glow with soft abstract brush marks only). Vertical 9:16. NIGHT in a narrow Japanese shopping street (shotengai) in Tokyo: deep blue-violet night sky, the street lit only by its own lights. Tightly packed narrow buildings with lit shop fronts glowing warm, fabric awnings, roller shutters, vending machines glowing white, potted plants; many glowing vertical neon sign boards sticking out over the street in pink, cyan, yellow, orange, green and violet; warm lit windows and dark windows upstairs, air conditioners, rooftop billboards and water tanks; strings of round red and cream paper lanterns hanging across the street, glowing; concrete utility poles with crossbars, transformers and a tangle of black wires; the dark asphalt is slightly wet and reflects the neon colours in soft streaks; white painted lines and zebra crossing stripes on the road. Soft glow around every lamp and sign, gentle haze in the distance. At a small crossing: zebra crossing stripes in the foreground, a side street opening to the right, a street lamp and a traffic light, shops and neon signs on both sides."
+ },
+ {
+  "name": "s5",
+  "aspect": "9:16",
+  "refs": [
+   "out/still_5.png",
+   "~/.claude/skills/painted-3d-short/refs/style.jpg"
+  ],
+  "prompt": "Repaint the FIRST reference image (a plain 3D blockout render) as a hand-painted 2D animation background. Use ONLY THE ART STYLE of the SECOND reference image: gouache and crayon texture, visible brush hatching, thin dark ink outlines, rich saturated colours; do not copy any object from the second image. Keep the composition, camera angle, perspective and the position, size and shape of every object of the FIRST image exactly as they are; do not add, move or remove anything. No people, no figures, no text, no readable letters (sign boards glow with soft abstract brush marks only). Vertical 9:16. NIGHT in a narrow Japanese shopping street (shotengai) in Tokyo: deep blue-violet night sky, the street lit only by its own lights. Tightly packed narrow buildings with lit shop fronts glowing warm, fabric awnings, roller shutters, vending machines glowing white, potted plants; many glowing vertical neon sign boards sticking out over the street in pink, cyan, yellow, orange, green and violet; warm lit windows and dark windows upstairs, air conditioners, rooftop billboards and water tanks; strings of round red and cream paper lanterns hanging across the street, glowing; concrete utility poles with crossbars, transformers and a tangle of black wires; the dark asphalt is slightly wet and reflects the neon colours in soft streaks; white painted lines and zebra crossing stripes on the road. Soft glow around every lamp and sign, gentle haze in the distance. Low view looking back along the street: zebra stripes at the bottom, signs and lanterns overhead, the red gate small in the distance."
+ },
+ {
+  "name": "s6",
+  "aspect": "9:16",
+  "refs": [
+   "out/still_6.png",
+   "~/.claude/skills/painted-3d-short/refs/style.jpg"
+  ],
+  "prompt": "Repaint the FIRST reference image (a plain 3D blockout render) as a hand-painted 2D animation background. Use ONLY THE ART STYLE of the SECOND reference image: gouache and crayon texture, visible brush hatching, thin dark ink outlines, rich saturated colours; do not copy any object from the second image. Keep the composition, camera angle, perspective and the position, size and shape of every object of the FIRST image exactly as they are; do not add, move or remove anything. No people, no figures, no text, no readable letters (sign boards glow with soft abstract brush marks only). Vertical 9:16. NIGHT in a narrow Japanese shopping street (shotengai) in Tokyo: deep blue-violet night sky, the street lit only by its own lights. Tightly packed narrow buildings with lit shop fronts glowing warm, fabric awnings, roller shutters, vending machines glowing white, potted plants; many glowing vertical neon sign boards sticking out over the street in pink, cyan, yellow, orange, green and violet; warm lit windows and dark windows upstairs, air conditioners, rooftop billboards and water tanks; strings of round red and cream paper lanterns hanging across the street, glowing; concrete utility poles with crossbars, transformers and a tangle of black wires; the dark asphalt is slightly wet and reflects the neon colours in soft streaks; white painted lines and zebra crossing stripes on the road. Soft glow around every lamp and sign, gentle haze in the distance. High view from above looking down on the street and its crossing: zebra stripes, the road with white edge lines, black wires crossing the view, strings of lanterns, awnings and signs on both sides."
+ },
+ {
+  "name": "s7",
+  "aspect": "9:16",
+  "refs": [
+   "out/still_7.png",
+   "~/.claude/skills/painted-3d-short/refs/style.jpg"
+  ],
+  "prompt": "Repaint the FIRST reference image (a plain 3D blockout render) as a hand-painted 2D animation background. Use ONLY THE ART STYLE of the SECOND reference image: gouache and crayon texture, visible brush hatching, thin dark ink outlines, rich saturated colours; do not copy any object from the second image. Keep the composition, camera angle, perspective and the position, size and shape of every object of the FIRST image exactly as they are; do not add, move or remove anything. No people, no figures, no text, no readable letters (sign boards glow with soft abstract brush marks only). Vertical 9:16. NIGHT in a narrow Japanese shopping street (shotengai) in Tokyo: deep blue-violet night sky, the street lit only by its own lights. Tightly packed narrow buildings with lit shop fronts glowing warm, fabric awnings, roller shutters, vending machines glowing white, potted plants; many glowing vertical neon sign boards sticking out over the street in pink, cyan, yellow, orange, green and violet; warm lit windows and dark windows upstairs, air conditioners, rooftop billboards and water tanks; strings of round red and cream paper lanterns hanging across the street, glowing; concrete utility poles with crossbars, transformers and a tangle of black wires; the dark asphalt is slightly wet and reflects the neon colours in soft streaks; white painted lines and zebra crossing stripes on the road. Soft glow around every lamp and sign, gentle haze in the distance. Standing in the middle of the street looking far ahead: strings of lanterns overhead, signs on both sides, at the far end a tall building with a large glowing pink screen."
+ },
+ {
+  "name": "s8",
+  "aspect": "9:16",
+  "refs": [
+   "out/still_8.png",
+   "~/.claude/skills/painted-3d-short/refs/style.jpg"
+  ],
+  "prompt": "Repaint the FIRST reference image (a plain 3D blockout render) as a hand-painted 2D animation background. Use ONLY THE ART STYLE of the SECOND reference image: gouache and crayon texture, visible brush hatching, thin dark ink outlines, rich saturated colours; do not copy any object from the second image. Keep the composition, camera angle, perspective and the position, size and shape of every object of the FIRST image exactly as they are; do not add, move or remove anything. No people, no figures, no text, no readable letters (sign boards glow with soft abstract brush marks only). Vertical 9:16. NIGHT in a narrow Japanese shopping street (shotengai) in Tokyo: deep blue-violet night sky, the street lit only by its own lights. Tightly packed narrow buildings with lit shop fronts glowing warm, fabric awnings, roller shutters, vending machines glowing white, potted plants; many glowing vertical neon sign boards sticking out over the street in pink, cyan, yellow, orange, green and violet; warm lit windows and dark windows upstairs, air conditioners, rooftop billboards and water tanks; strings of round red and cream paper lanterns hanging across the street, glowing; concrete utility poles with crossbars, transformers and a tangle of black wires; the dark asphalt is slightly wet and reflects the neon colours in soft streaks; white painted lines and zebra crossing stripes on the road. Soft glow around every lamp and sign, gentle haze in the distance. A very wide-angle view from low on a zebra crossing, looking up the narrow street and far up into the sky: the big sky in the upper half is a deep blue-violet night sky with soft layered rain clouds lit pink and orange from below by the city, a few stars in the gaps; black wires run across it; a round street lamp glows upper left; tall building corners with lit signs frame the top left and top right; strings of lanterns and a red gate far down the street."
+ }
+]
