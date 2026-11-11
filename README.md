@@ -8,7 +8,8 @@ A Claude Code skill: a music Short where one stick figure is alone in a crowded,
   [painted-3d-short](https://github.com/thuann-vn/claude-painted-3d-shorts) method),
 - 100–200 stick people per shot are animated in code: a planted-foot walk, umbrellas in the rain, phones at the ear,
   lamp light on the heads, cast shadows,
-- a time-lapse ending (the crowd runs 14× faster, the camera turns up to the sky),
+- the whole crowd is a time-lapse (10× faster, streaks) while the hero lives in real time,
+- one motivated camera move per shot, done by turning and zooming inside the projected painting; the ending tilts up to the sky,
 - a finishing pass: bloom, grain, handheld drift, cuts and a pulse on the song's kick.
 
 No video model is used.

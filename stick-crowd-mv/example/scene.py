@@ -172,10 +172,10 @@ CUT = [0, 4.2, 8.3, 12.3, 16.4, 20.5, 24.3, 30.0]            # the lyric lines o
 NFR = [round(CUT[i + 1] * FPS) - round(CUT[i] * FPS) for i in range(7)]
 # id: (camera pos, target, lens, dolly forward m, frames, [(frames folder, painting)])   — shots 1, 2 are the book street (other file)
 SHOTS = {
-    3: ((0.4, -3.6, 1.7), (0.0, 30.0, 4.4), 21, 0.9, NFR[2], [("s3", "3")]),      # into the street through the gate
-    4: ((-2.0, 12.3, 1.5), (1.7, 24.0, 2.7), 26, 0.5, NFR[3], [("s4", "4")]),     # at the crossing
-    5: ((0.5, 25.9, 0.85), (-0.3, 18.0, 3.4), 30, 0.25, NFR[4], [("s5", "5")]),   # low, looking back at him
-    6: ((0.3, 8.6, 8.6), (0.0, 21.0, 0.4), 24, 0.6, NFR[5], [("s6", "6")]),       # from high up, down on the crossing
+    3: ((0.4, -3.6, 1.7), (0.0, 30.0, 4.4), 21, 0.9, NFR[2] * 6, [("s3", "3")]),      # into the street through the gate
+    4: ((-2.0, 12.3, 1.5), (1.7, 24.0, 2.7), 26, 0.5, NFR[3] * 6, [("s4", "4")]),     # at the crossing
+    5: ((0.5, 25.9, 0.85), (-0.3, 18.0, 3.4), 30, 0.25, NFR[4] * 6, [("s5", "5")]),   # low, looking back at him
+    6: ((0.3, 8.6, 8.6), (0.0, 21.0, 0.4), 24, 0.6, NFR[5] * 6, [("s6", "6")]),       # from high up, down on the crossing
     7: ((0.0, 27.2, 1.65), (0.0, 62.0, 4.6), 30, 0.9, NFR[6], [("s7", "7")]),     # behind him, walking away up the street
     # 8 = the time-lapse ending: painted once with a very wide lens looking up the street; stick.py turns the render camera
     # (28 mm) inside that picture from street level up to the sky, and renders SUB sub-frames per frame (post.py blends them)

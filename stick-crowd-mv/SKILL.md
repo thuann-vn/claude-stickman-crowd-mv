@@ -69,13 +69,29 @@ Mocap on a line figure looks messy (arms rooted at the neck spread wide, hands a
 - A standing person is never still: breathing, a slow shift of weight, the face turning.
 - Couples walk abreast with the same spec, half a cycle apart.
 
-## Time-lapse shot
+## Time-lapse (the whole film)
 
-- Paint ONE very wide picture (14 mm, aimed ~20° up). The render camera (28 mm) only TURNS inside it, from the hero up to the
-  sky. A pure turn has no parallax, so the projection holds over a 36° tilt.
-- The crowd's clock runs 14× faster after half a second (`warp()`), the hero stays on real time.
-- Render 6 sub-frames per frame; post.py averages them in linear light, so people become streaks and lights stay bright.
-- The setter may overwrite the camera rotation and lens: p3d calls `look()` first, then the setters.
+- In every shot the crowd's clock runs 10× faster (`LAPSE`, `warp()`); the hero alone lives in real time. That contrast is
+  the idea of the film.
+- Render 6 sub-frames per frame (`SUB`; the shot's frame count × 6 in scene.py); post.py averages them in linear light, so
+  people become streaks and lights stay bright. 30 s = 4320 renders, about 25 minutes on three Blender processes.
+
+## Camera moves inside the painting
+
+A projected painting only survives a small forward dolly. But the render camera may TURN, ZOOM IN and ROLL inside the
+painting freely: a pure rotation has no parallax. `CAMK` in stick.py holds keys per shot — (part of the shot, zoom, pan, tilt,
+roll, aim-at-hero) — applied after p3d's `look()`; pan and tilt are clamped to the room the zoom leaves, and a rolled frame
+is zoomed just enough to stay inside the picture. Give each shot one move with a reason:
+
+- start tight on him, tilt up and pull back to reveal the crowded street;
+- slow push-in on the face as he walks toward us;
+- from the neon signs down into the street until we find him;
+- a tilted horizon that settles while pushing in;
+- a pan across passing umbrellas that lands on him;
+- from above: tight on the bare head, turning, pulling back over the umbrellas;
+- the ending: ONE very wide picture (14 mm, aimed ~20° up) and a 28 mm render camera that tilts from him up to the sky.
+
+For an orbit or a real crane move, paint an extra wide picture for that shot.
 
 ## Finishing pass (post.py)
 
@@ -83,6 +99,9 @@ Bloom on what is really bright, vignette, grain (stronger in the dark), a little
 time-lapse), punch-in + flash on each cut, and a small pulse of zoom and glow on the song's kick (low band of the audio,
 frame by frame). Keep every effect small; together they are enough.
 
-## Rights
+## Music
 
-Use music you have the rights to. The example was cut to a commercial song for a private test; the audio is not in this repo.
+Use music you have the rights to; no audio is in this repo. `CLIP=/path/clip.m4a python post.py` reads the song for the kick
+pulse. To fit a new track to shots that are already rendered, slide a 30 s window over the track and keep the offset where
+the onset strength at the cut times is highest. The example's final cut uses "Thunder & Rain Inst. & Construction Kits" by
+coruscate (https://ccmixter.org/files/Coruscate/61228), CC BY 3.0.

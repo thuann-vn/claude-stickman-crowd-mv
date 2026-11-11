@@ -55,13 +55,25 @@ def ease(x):
 
 SLOT = {8: 6}          # shot id → lyric slot when it is not id − 1
 SUB = 6                # time-lapse: sub-frames rendered per frame (post.py blends them into streaks)
-LAPSE = 14.0           # how many times faster the crowd's time runs
+LAPSE = 10.0           # how many times faster everybody else's time runs (the hero alone lives in real time)
 
 
 def warp(tl):
-    """crowd time in the time-lapse: real speed for half a second, then it runs away"""
-    n = max(1, int(tl * 120)); h = tl / n
-    return sum((1.0 + (LAPSE - 1.0) * ease(((k + 0.5) * h - 0.5) / 0.9)) * h for k in range(n))
+    return tl * LAPSE
+
+
+# Camera moves. The painting is projected from the shot's camera, so the render camera may TURN and ZOOM IN inside it freely
+# (no parallax) on top of the small real dolly. Keys: (part of the shot 0..1, zoom ×, pan, tilt, roll°, aim). pan/tilt are parts
+# of the room the zoom leaves (−1 left/down … 1 right/up); aim 0..1 pulls the centre onto the hero's head.
+# Each move has a reason: start covered then reveal; push in on the lonely face; a tilted horizon that settles; a turn from above.
+CAMK = {
+    1: [(0.0, 2.0, 0.0, -1.0, 0, 0.0), (0.78, 1.08, 0.0, 0.25, 0, 0.0)],      # his feet and shadow → up to the whole street
+    2: [(0.0, 1.0, 0.0, 0.0, 0, 0.0), (1.0, 1.75, 0.0, 0.0, 0, 1.0)],         # slow push in on his face as he comes
+    3: [(0.0, 1.7, 0.3, 1.0, 0, 0.0), (0.8, 1.12, 0.0, -0.1, 0, 0.3)],        # neon and sky → down into the street, finding him
+    4: [(0.0, 1.08, 0.0, 0.0, 7, 0.5), (1.0, 1.65, 0.0, 0.0, 0, 1.0)],        # tilted horizon settles while we push in
+    5: [(0.0, 1.55, -1.0, -0.6, 0, 0.0), (0.7, 1.3, 0.0, 0.0, 0, 1.0)],       # across the passing umbrellas, onto him
+    6: [(0.0, 1.9, 0.0, 0.0, -14, 1.0), (1.0, 1.35, 0.0, 0.0, 5, 0.6)],       # from above: tight on the bare head, turning, pulling back
+}
 
 
 # ---------------------------------------------------------------- staging per shot
@@ -75,7 +87,7 @@ SHOTS = {
         4: dict(hero=((-0.75, 15.9), (0.25, -0.97), "stand", 0.26), xw=2.35, yr=(8.0, 46.0), n=58, bubble=1.2, cross=14, stand=[(2.5, 15.4, 1.3), (2.55, 16.2, 2.0), (-2.6, 25.2, -1.4), (2.4, 26.4, 1.6)]),
         5: dict(hero=((0.05, 21.4), (0, 1), "stand", -0.42), xw=2.35, yr=(-6.0, 28.0), n=52, bubble=1.25, cross=8, stand=[(-2.5, 15.6, -1.5), (2.55, 14.8, 1.4), (2.5, 14.0, 2.0)]),
         6: dict(hero=((0.0, 20.6), (0, 1), "stand", 0.3), xw=2.4, yr=(5.0, 46.0), n=66, bubble=1.7, cross=26, stand=[(-2.6, 15.0, -1.4), (2.6, 16.0, 1.5), (-2.6, 25.5, -1.6), (2.55, 27.0, 1.3), (2.6, 27.8, 2.1)]),
-        8: dict(hero=((0.05, 22.3), (0, 1), "stand", 0.12), xw=2.35, yr=(0.0, 40.0), n=62, bubble=1.2, cross=10, lapse=True, stand=[]),   # time-lapse ending
+        8: dict(hero=((0.05, 22.3), (0, 1), "stand", 0.12), xw=2.35, yr=(0.0, 40.0), n=62, bubble=1.2, cross=10, sky=True, stand=[]),   # time-lapse ending
         7: dict(hero=((0.0, 31.2), (0, 1), "walk", 0.25), xw=2.35, yr=(24.0, 70.0), n=62, bubble=1.15, stand=[(-2.55, 34.0, -1.4), (-2.5, 34.8, -2.0), (2.55, 38.0, 1.5), (2.5, 44.0, 1.3)]),
     },
 }
@@ -312,7 +324,7 @@ def make(G, loc):
             people.append(dict(kind="stand", clip=IDLES[(j + sid) % len(IDLES)], x=sx, y=sy, yaw=syaw, sc=rr.uniform(0.9, 1.04), ph=rr.random(), phone=(j % 2 == 0)))
         return people
 
-    GONE = np.array([0.0, 0.0, -9.0])
+    GONE = np.array([0.0, 0.0, -9.0]); BASEL = {}
     pme = bpy.data.meshes.new("stick_phone"); pf = []
     for i in range(NMAX):
         b = i * 8; pf += [(b, b + 1, b + 3, b + 2), (b + 4, b + 6, b + 7, b + 5), (b, b + 4, b + 5, b + 1), (b + 2, b + 3, b + 7, b + 6), (b, b + 2, b + 6, b + 4), (b + 1, b + 5, b + 7, b + 3)]
@@ -400,10 +412,10 @@ def make(G, loc):
             ob.hide_render = not on
         if not on:
             return
-        S = SHOTS[loc][sid]; lapse = S.get("lapse", False); slot = SLOT.get(sid, sid - 1); dur = CUT[slot + 1] - CUT[slot]
+        S = SHOTS[loc][sid]; lapse = True; sky = S.get("sky", False); slot = SLOT.get(sid, sid - 1); dur = CUT[slot + 1] - CUT[slot]
         tl = (i / SUB if lapse else i) / FPS + int(os.environ.get("STICK_OFF", "0")) / FPS; t = CUT[slot] + tl  # STICK_OFF: test one frame at another time
         tc = CUT[slot] + (warp(tl) if lapse else tl)   # the crowd's clock
-        if lapse:   # the render camera turns inside the wide painting: from him up to the sky (a pure turn, so the painting holds)
+        if sky:   # the render camera turns inside the wide painting: from him up to the sky (a pure turn, so the painting holds)
             k_ = ease((tl - 1.0) / (dur - 1.5)); pit = math.radians(2.0 + 36.0 * k_)
             cam.rotation_euler = (math.pi / 2 + pit, 0.0, math.pi + math.radians(1.2)); cam.data.lens = 28.0 + 3.0 * (1 - k_)
             bpy.context.view_layer.update()
@@ -425,6 +437,19 @@ def make(G, loc):
         blink = any(b <= t < b + 0.17 for b in (2.6, 6.4, 10.1, 14.2, 18.9, 22.8, 27.2))
         M_ = Matrix.Translation(Vector(hc)) @ Matrix.Rotation(yaw + lookyaw, 4, "Z") @ Matrix.Rotation(-pitch, 4, "X") @ Matrix.Scale(0.172, 4)
         face_open.matrix_world = M_; face_shut.matrix_world = M_; face_open.hide_render = blink; face_shut.hide_render = not blink
+        if sid in CAMK:
+            Lb = BASEL.setdefault(sid, cam.data.lens); u = tl / dur; K_ = CAMK[sid]; k0, k1 = K_[0], K_[-1]
+            for a_, b_ in zip(K_, K_[1:]):
+                if a_[0] <= u <= b_[0]: k0, k1 = a_, b_
+            w = ease((u - k0[0]) / max(1e-6, k1[0] - k0[0])); m, pn, tt_, roll, aim = [k0[j] * (1 - w) + k1[j] * w for j in range(1, 6)]
+            rr_ = math.radians(abs(roll)); cr, sr = math.cos(rr_), math.sin(rr_); PX, PY = 10.05 / Lb, 18.0 / Lb
+            m = max(m, 1.03 * (cr + sr * 18.0 / 10.05), 1.03 * (cr + sr * 10.05 / 18.0))    # a rolled frame needs more zoom to stay inside the painting
+            tx, ty = 10.05 / (Lb * m), 18.0 / (Lb * m); amax = max(0.0, math.atan(PX) - math.atan(tx * cr + ty * sr)) * 0.9; bmax = max(0.0, math.atan(PY) - math.atan(ty * cr + tx * sr)) * 0.9
+            Rb = cam.rotation_euler.to_matrix(); v = Rb.transposed() @ (Vector(hc) - cam.location)
+            pa = pn * amax * (1 - aim) + math.atan2(v.x, -v.z) * aim; ta = tt_ * bmax * (1 - aim) + (math.atan2(v.y, -v.z) - 0.25 * math.atan(ty)) * aim   # his head in the upper part
+            pa = max(-amax, min(amax, pa)); ta = max(-bmax, min(bmax, ta))
+            cam.rotation_euler = (Rb @ Matrix.Rotation(-pa, 3, "Y") @ Matrix.Rotation(ta, 3, "X") @ Matrix.Rotation(math.radians(roll), 3, "Z")).to_euler()
+            cam.data.lens = Lb * m; bpy.context.view_layer.update()
         cx, cy, cz = cam.location; low = cz < 4.0
         fw = cam.rotation_euler.to_matrix() @ Vector((0, 0, -1)); fl = math.hypot(fw.x, fw.y) or 1.0; fwd_x, fwd_y = fw.x / fl, fw.y / fl
         if sid not in CAST:   # the street is filled from behind the camera to ~50 m ahead, so the loop never wraps in view

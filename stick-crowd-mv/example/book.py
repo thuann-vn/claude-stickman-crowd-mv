@@ -993,7 +993,8 @@ if PROJ and os.path.exists(os.path.join(os.path.dirname(OUT2), "stick.py")):
     import stick
     STICK = stick.make(globals(), "book")
 for sid, mode, (p0, p1), (t0, t1), lens, dof in SHOTS:
-    N = FR[sid]
+    SUBF = 6 if (PROJ and not STILLS) else 1   # sub-frames per frame: the crowd is a time-lapse, post.py blends them
+    N = FR[sid] * SUBF
     hero_lantern.hide_render = sid != 8
     pm_, tm_ = Vector(mix(p0, p1, 0.5)), Vector(mix(t0, t1, 0.5))
     fw = (tm_ - pm_).normalized() * DOLLY[sid]
@@ -1023,10 +1024,11 @@ for sid, mode, (p0, p1), (t0, t1), lens, dof in SHOTS:
             t = 0.0 if STILLS else i / (N - 1)
             pos = mix(p0, p1, t)
             look(pos, mix(t0, t1, t), lens)
-            set_leaves(sid, p0[1], i / 24)
-            set_book(sid, i)
-            set_hero(sid, lens, i)
-            set_tags(sid, lens, i)
+            fi = i // SUBF
+            set_leaves(sid, p0[1], i / SUBF / 24)
+            set_book(sid, fi)
+            set_hero(sid, lens, fi)
+            set_tags(sid, lens, fi)
             if STICK:
                 STICK(sid, i)
             if dof:

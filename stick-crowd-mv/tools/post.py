@@ -8,7 +8,7 @@ HERE = os.path.dirname(os.path.abspath(__file__)); OUT = os.path.join(HERE, "out
 W, H, FPS = 1080, 1920, 24
 NIGHT = {3, 4, 5, 6, 7, 8}
 ORDER = [1, 2, 3, 4, 5, 6, 8]   # 8 = the time-lapse ending (in the slot of 7, "walking away", which is kept in scene.py)
-SUB = {8: 6}                    # sub-frames per frame, blended into streaks
+SUB = {s: 6 for s in ORDER}                    # sub-frames per frame, blended into streaks
 
 
 def frames():
@@ -22,7 +22,7 @@ def frames():
 
 def kick(n):
     """0..1 per frame: how hard the low end of the song hits there"""
-    raw = subprocess.run(["ffmpeg", "-v", "error", "-i", os.path.join(HERE, "clip.m4a"), "-ac", "1", "-ar", "8000", "-af", "lowpass=f=140", "-f", "s16le", "-"], capture_output=True).stdout
+    raw = subprocess.run(["ffmpeg", "-v", "error", "-i", os.environ.get("CLIP", os.path.join(HERE, "clip.m4a")), "-ac", "1", "-ar", "8000", "-af", "lowpass=f=140", "-f", "s16le", "-"], capture_output=True).stdout
     a = np.frombuffer(raw, dtype=np.int16).astype(np.float64) / 32768.0
     hop = 8000 / FPS; e = np.array([np.sqrt(np.mean(a[int(i * hop):int((i + 1) * hop)] ** 2) + 1e-12) if int(i * hop) < len(a) else 0 for i in range(n)])
     base = np.convolve(e, np.ones(13) / 13, mode="same"); on = np.maximum(0, e - base * 1.15)
