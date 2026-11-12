@@ -37,3 +37,7 @@ Copy `stick-crowd-mv/` into `~/.claude/skills/`, next to `painted-3d-short/`.
 
 - Idle clips in `example/m2m.json`: joint positions extracted from [Mesh2Motion](https://github.com/Mesh2Motion/mesh2motion-app) animations (CC0).
 - The walk follows the planted-foot gait of the studio's 2D stick rig.
+
+## Support
+
+If this skill saved you some time, you can [buy me a coffee](https://buymeacoffee.com/thua9678) ☕
